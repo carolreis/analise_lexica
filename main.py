@@ -4,44 +4,64 @@ from constant import *
 from commentary import *
 from reserved import *
 
-map_tokens = []
-table_symbols = []
+tokens = {}
+symbol_table = {}
+errors = {}
+line = 1
+_id = 1
 
-# Identifier 
-fita_identifier = "t"
-# print(fita_identifier)
-# print identifier(fita_identifier)
-
-# Constantes
-fita_constantes = '99.99'
-# print(fita_constantes)
-# print constant(fita_constantes)
-
-# Comentários
-fita_comentario = '//'
-# print(fita_comentario)
-# print commentary(fita_comentario)
-
-# Palavras reservadas
-fita_reservada = 'double'
-# print reserved(fita_reservada)
-
-'''
-==============================================
-'''
-
+#loop
 fita = ''
+token = {}
 
-if reserved(fita):
-	print 'reservada'
-elif identifier(fita):
-	print 'identificador'
-elif constant(fita):
-	print 'constante'
-elif commentary(fita):
-	print 'comentário'
+r = reserved(fita)
+i = identifier(fita)
+con = constant(fita)
+com = commentary(fita)
+
+if r:
+	token = {
+		'linha': line,
+		'tipo': r
+	}
+	tokens.update(token)
+elif i:
+	token = {
+		'linha': line,
+		'tipo': 'identificador',
+		'id': _id
+	}
+	tokens.update(token)
+	symbol_table.update({_id:fita})
+elif con:
+	token = {
+		'linha': line, 
+		'tipo': 'constante',
+		'id': _id
+	}
+	tokens.update(token)
+	symbol_table.update({_id:fita})
+elif com:
+	token = {
+		'linha': line, 
+		'tipo': 'comentário',
+		'id': _id
+	}
+	tokens.update(token)
 else:
 	print 'não reconhecido'
+	errors.update({'line':line})
 
-# print(table_symbols)
-# print(map_tokens)
+print(tokens)
+print(symbol_table)
+print(errors)
+
+'''
+Verificar se já existe o identificador
+
+'''
+
+'''
+Quando der erro não exibe
+Mas contabiliza a linha
+'''
