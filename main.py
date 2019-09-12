@@ -68,8 +68,8 @@ with open(arquivo) as f:
 				'id': _id if not find_type else find_type[0]['id']
 			}
 			tokens.append(token)
-			tabela_simbolos.append({"id": _id, "valor":fita})
 			if not find_type:
+				tabela_simbolos.append({"id": _id, "valor":fita})
 				_id = _id + 1
 		# Constante
 		elif con:
@@ -79,8 +79,8 @@ with open(arquivo) as f:
 				'id': _id if not find_type else find_type[0]['id']
 			}
 			tokens.append(token)
-			tabela_simbolos.append({"id": _id, "valor":fita})
 			if not find_type:
+				tabela_simbolos.append({"id": _id, "valor":fita})
 				_id = _id + 1
 		# Comentario
 		elif com:
