@@ -13,7 +13,7 @@ def constant(fita):
 	def q5(fita, index):
 		if index < tam:
 			return False
-		return True
+		return 'float'
 
 	# 0...9
 	def q4(fita, index):
@@ -40,7 +40,7 @@ def constant(fita):
 				index = index + 1
 				return q3(fita, index)
 			return False
-		return True
+		return 'real'
 
 	# 0...9
 	def q1(fita, index):
@@ -50,7 +50,7 @@ def constant(fita):
 				return q2(fita, index)
 			return False
 		# index igual ao tamanho = fim da fita
-		return True
+		return 'real'
 
 	# 0...9
 	def q0(fita, index):
