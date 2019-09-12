@@ -2,7 +2,7 @@
 
 '''
 --------------------------------------------------------
-AUTÔMATO PARA RECONHECER CONSNTANTES (REAL / FLOAT)
+AUTÔMATO PARA RECONHECER CONSNTANTES (INTEIRO / REAL)
 --------------------------------------------------------
 
 ----------------------------
@@ -18,12 +18,12 @@ def constant(fita):
 
 	'''
 		ESTADO FINAL
-		Neste caso, o número é FLOAT
+		Neste caso, o número é REAL
 	'''
 	def q5(fita, index):
 		if index < tam:
 			return False
-		return 'float'
+		return 'número real'
 
 	'''
 		Reconhece XX.X{0...9}
@@ -49,7 +49,7 @@ def constant(fita):
 
 	'''
 		ESTADO FINAL
-		Neste caso, o número é REAL
+		Neste caso, o número é INTEIRO
 		Se não for, reconhece o "."
 	'''
 	def q2(fita, index):
@@ -58,11 +58,11 @@ def constant(fita):
 				index = index + 1
 				return q3(fita, index)
 			return False
-		return 'real'
+		return 'número inteiro'
 
 	'''
 		ESTADO FINAL
-		Neste caso, o número é REAL
+		Neste caso, o número é INTEIRO
 		Reconhece X{0...9}
 	'''
 	def q1(fita, index):
@@ -71,7 +71,7 @@ def constant(fita):
 				index = index + 1
 				return q2(fita, index)
 			return False
-		return 'real'
+		return 'número inteiro'
 
 	'''
 		Reconhece {0...9}

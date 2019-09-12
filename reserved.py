@@ -14,6 +14,8 @@ f 102 l 108 o 111 a 97 t 116
 r 114 e 101 a 97 l 108
 b 98 r 114 e 101 a 97 k 107
 c 99 a 97 s 115 e 101
+
+FALTOU O CHAR
 '''
 
 def reserved(fita):

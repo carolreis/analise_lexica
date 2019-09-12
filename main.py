@@ -40,7 +40,7 @@ with open(arquivo) as f:
 
 	for fita in f:
 
-		fita = fita.strip()
+		fita = fita.strip('\n')
 
 		token = {}
 
@@ -51,51 +51,50 @@ with open(arquivo) as f:
 
 		# Busca identificador / constante na tabela de símbolos
 		find_type = filter(lambda simbolo: simbolo['valor'] == fita, tabela_simbolos)
-		
-		if not find_type:
 
-			# Palavra reservada
-			if r:
-				token = {
-					'linha': linha,
-					'tipo': r,
-					'id': ""
-				}
-				tokens.append(token)
-			# Identificador
-			elif i:
-				token = {
-					'linha': linha,
-					'tipo': 'identificador',
-					'id': _id
-				}
-				tokens.append(token)
-				tabela_simbolos.append({"id": _id, "valor":fita})
-			# Constante
-			elif con:
-				token = {
-					'linha': linha, 
-					'tipo': con,
-					'id': _id
-				}
-				tokens.append(token)
-				tabela_simbolos.append({"id": _id, "valor":fita})
-			# Comentario
-			elif com:
-				token = {
-					'linha': linha, 
-					'tipo': 'comentário',
-					'id': _id
-				}
-				tokens.append(token)
-			# Nao reconhecido = erro
-			else:
-				erros.append({'linha':linha})
+		# Palavra reservada
+		if r:
+			token = {
+				'linha': linha,
+				'tipo': r,
+				'id': ""
+			}
+			tokens.append(token)
+		# Identificador
+		elif i:
+			token = {
+				'linha': linha,
+				'tipo': 'identificador',
+				'id': _id if not find_type else find_type[0]['id']
+			}
+			tokens.append(token)
+			tabela_simbolos.append({"id": _id, "valor":fita})
+			if not find_type:
+				_id = _id + 1
+		# Constante
+		elif con:
+			token = {
+				'linha': linha, 
+				'tipo': con,
+				'id': _id if not find_type else find_type[0]['id']
+			}
+			tokens.append(token)
+			tabela_simbolos.append({"id": _id, "valor":fita})
+			if not find_type:
+				_id = _id + 1
+		# Comentario
+		elif com:
+			token = {
+				'linha': linha, 
+				'tipo': 'comentário',
+				'id': ''
+			}
+			tokens.append(token)
+		# Nao reconhecido = erro
 		else:
 			erros.append({'linha':linha})
-
+	
 		linha = linha + 1
-		_id = _id + 1
 
 for token in tokens:
 	print "[%d] %s %s" % (token['linha'], token['tipo'], token['id'])
