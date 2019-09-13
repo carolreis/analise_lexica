@@ -11,7 +11,6 @@ CÓDIGO ASCII DOS CARACTERES
 A...Z = 65...90
 a...z = 97...112
 0...9 = 48...57
-_ = 95
 '''
 
 def identifier(fita):
@@ -28,7 +27,6 @@ def identifier(fita):
 				(ord(fita[index]) >= 65 and ord(fita[index]) <= 90) 
 				or (ord(fita[index]) >= 97 and ord(fita[index]) <= 122)
 				or (ord(fita[index]) >= 48 and ord(fita[index]) <= 57)
-				or ord(fita[index]) == 95
 			):
 				index = index + 1
 			else:
@@ -41,7 +39,7 @@ def identifier(fita):
 	'''
 	def q0(fita, index):
 		if index < tam:
-			if (ord(fita[index]) >= 65 and ord(fita[index]) <= 90) or (ord(fita[index]) >= 97 and ord(fita[index]) <= 122) or ord(fita[index]) == 95:
+			if (ord(fita[index]) >= 65 and ord(fita[index]) <= 90) or (ord(fita[index]) >= 97 and ord(fita[index]) <= 122):
 				index = index + 1
 				return q1(fita, index)
 			return False

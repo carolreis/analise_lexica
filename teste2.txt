@@ -1,0 +1,17 @@
+190
+87
+abc
+87
+duble
+const abc
+ int
+87.87
+continue
+4ab
+//É um comentário
+/ Qualquer coisa
+abc
+ab
+87
+55.7
+Maria Adelina
